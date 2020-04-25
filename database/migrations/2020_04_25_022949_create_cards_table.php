@@ -16,12 +16,13 @@ class CreateCardsTable extends Migration
         Schema::create('cards', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('health');
-            $table->integer('attack');
+            $table->integer('health')->nullable();
+            $table->integer('attack')->nullable();
             $table->string('type');
-            $table->string('race');
-            $table->string('faction');
-            $table->string('text');
+            $table->string('race')->nullable();
+            $table->string('faction')->nullable();
+            $table->string('text')->nullable();
+            $table->string('img')->nullable();
             
             $table->timestamps();
         });

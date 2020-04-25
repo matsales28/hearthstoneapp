@@ -13,7 +13,8 @@ class Card extends Model
         'faction',
         'race',
         'type',
-        'text'
+        'text',
+        'img'
     ];
 }
 
