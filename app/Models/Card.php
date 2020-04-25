@@ -14,7 +14,12 @@ class Card extends Model
         'race',
         'type',
         'text',
-        'img'
+        'img',
+        'mechanics'
+    ];
+
+    protected $casts = [
+        'mechanics' => 'array'
     ];
 }
 

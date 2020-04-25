@@ -23,6 +23,7 @@ class CreateCardsTable extends Migration
             $table->string('faction')->nullable();
             $table->string('text')->nullable();
             $table->string('img')->nullable();
+            $table->json('mechanics')->nullable();
             
             $table->timestamps();
         });

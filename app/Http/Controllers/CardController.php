@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
+use App\Models\Card;
+use App\Http\Resources\Card as CardResource;
 
 class CardController extends Controller
 {
@@ -13,7 +16,11 @@ class CardController extends Controller
      */
     public function index()
     {
-        //
+        // Get all cards
+        $cards = Card::paginate(30);
+
+        //Return collection
+        return CardResource::collection($cards);
     }
 
     /**
@@ -45,7 +52,9 @@ class CardController extends Controller
      */
     public function show($id)
     {
-        //
+        $card = Card::findOrFail($id);
+
+        return new CardResource($card);
     }
 
     /**
