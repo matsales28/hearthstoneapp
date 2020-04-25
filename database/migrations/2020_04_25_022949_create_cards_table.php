@@ -18,7 +18,7 @@ class CreateCardsTable extends Migration
             $table->string('name');
             $table->integer('health')->nullable();
             $table->integer('attack')->nullable();
-            $table->string('type');
+            $table->string('type')->nullable();
             $table->string('race')->nullable();
             $table->string('faction')->nullable();
             $table->string('text')->nullable();

@@ -49,7 +49,7 @@ class CardsSeeder extends Seeder
         $card_attrs['attack'] = array_key_exists('attack', $response) ? $response['attack'] : null;
         $card_attrs['faction'] = array_key_exists('faction', $response) ? $response['faction'] : null;
         $card_attrs['race'] = array_key_exists('race', $response) ? $response['race'] : null;
-        $card_attrs['type'] = $response['type'];
+        $card_attrs['type'] = array_key_exists('type', $response) ? $response['type'] : null;
         $card_attrs['text'] = array_key_exists('text', $response) ? $response['text'] : null;
 
         return $card_attrs;
