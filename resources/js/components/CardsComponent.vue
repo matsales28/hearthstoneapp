@@ -1,6 +1,10 @@
 <template>
     <div>
-        <b-modal  id="modal-lg" size="lg" centered v-model="modalShow" busy="true" hide-footer="true" hide-header="true">
+            <b-form-select v-model="cardSet" :options="options.cardSet" width="50px"></b-form-select>
+            <b-form-select v-model="rarity" :options="options.rarity" size="sm" class="mt-3"></b-form-select>
+            <b-form-select v-model="race" :options="options.race" size="sm" class="mt-3"></b-form-select>
+            <button @click.prevent="searchCard()" class="btn btn-primary"><i class="fa fa-search"></i></button>
+        <b-modal  id="modal-lg" size="lg" centered v-model="modalShow" :busy=true :hide-footer=true :hide-header=true>
             <b-container>
                 <b-row class="mb-1 text-center">
                     <b-col cols="6">
@@ -49,10 +53,18 @@
                 <li v-bind:class="[{disabled: !pagination.next_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchCards(pagination.next_page_url)">Next</a></li>
             </ul>
         </nav>
-
-        <div class="card-deck"  v-for="n in 3" v-bind:key="n">
-            <div class="card border-light mb-3" v-for="(card,index) in cards" v-if="index <= ((n*10)-1) && index >= ((n*10)-10)" @click="fetchCard(card.id)" v-bind:key="card.id">
-                <img class="card-img-top" :src="card.img" alt="Card image cap">
+        <div v-if="showSearch===true">
+            <div class="card-deck"  v-for="n in 3" v-bind:key="n">
+                <div class="card border-light mb-3" v-for="(cari,index) in caris" v-if="index <= ((n*10)-1) && index >= ((n*10)-10)" @click="fetchCard(cari.id)" v-bind:key="cari.id">
+                    <img class="card-img-top" :src="cari.img" alt="Card image cap">
+                </div>
+            </div>
+        </div>
+        <div v-if="showSearch===false">
+            <div class="card-deck"  v-for="n in 3" v-bind:key="n">
+                <div class="card border-light mb-3" v-for="(card,index) in cards" v-if="index <= ((n*10)-1) && index >= ((n*10)-10)" @click="fetchCard(card.id)" v-bind:key="card.id">
+                    <img class="card-img-top" :src="card.img" alt="Card image cap">
+                </div>
             </div>
         </div>
     </div>
@@ -83,6 +95,65 @@
             card_id: '',
             pagination: {},
             modalShow: false,
+            search: '',
+            showSearch: false,
+            caris: [],
+            cardSet: '',
+            rarity: '',
+            race: '',
+            options: {
+                cardSet: [ { value: null, text: 'Please select an Set' },
+                    { value: 'Basic', text: 'Basic' },
+                    { value: 'Classic', text: 'Classic' },
+                    { value: 'Hall of Fame', text: 'Hall of Fame' },
+                    { value: 'Naxxramas', text: 'Naxxramas' },
+                    { value: 'Globins vs Gnomes', text: 'Globins vs Gnomes' },
+                    { value: 'Blackrock Mountain', text: 'Blackrock Mountain' },
+                    { value: 'The Grand Tournament', text: 'The Grand Tournament' },
+                    { value: 'The League of Explorers', text: 'The League of Explorers' },
+                    { value: 'Whispers of the Old Gods', text: 'Whispers of the Old Gods' },
+                    { value: 'One Night in Karazhan', text: 'One Night in Karazhan' },
+                    { value: 'Mean Streets of Gadgetzan', text: 'Mean Streets of Gadgetzan' },
+                    { value: "Journey to Un'Goro", text: "Journey to Un'Goro" },
+                    { value: 'Knights of the Frozen Throne', text: 'Knights of the Frozen Throne' },
+                    { value: 'Kobolds & Catacombs', text: 'Kobolds & Catacombs' },
+                    { value: 'The Witchwood', text: 'The Witchwood' },
+                    { value: 'The Boomsday Project', text: 'The Boomsday Project' },
+                    { value: "Rastakhan's Rumble", text: "Rastakhan's Rumble" },
+                    { value: 'Rise of Shadows', text: 'Rise of Shadows' },
+                    { value: 'Saviors of Uldum', text: 'Saviors of Uldum' },
+                    { value: 'Descent of Dragons', text: 'Descent of Dragons' },
+                    { value: "Galakrond's Awakening", text: "Galakrond's Awakening" },
+                    { value: 'Ashes of Outland', text: 'Ashes of Outland' },
+                    { value: 'Demon Hunter Initiate', text: 'Demon Hunter Initiate' },
+                    { value: 'Wild Event', text: 'Wild Event' },
+                    { value: 'Battlegrounds', text: 'Battlegrounds' },
+                    { value: 'Tavern Brawl', text: 'Tavern Brawl' },
+                    { value: 'Tavern Brawl', text: 'Tavern Brawl' },
+                    { value: 'Hero Skins', text: 'Hero Skins' },
+                    { value: 'Missions', text: 'Missions' },
+                    { value: 'Credits', text: 'Credits' }],
+                rarity: [
+                    { value: null, text: 'Please select an Rarity' },
+                    { value: 'Free', text: 'Free' },
+                    { value: 'Common', text: 'Common' },
+                    { value: 'Rare', text: 'Rare' },
+                    { value: 'Epic', text: 'Epic' },
+                    { value: 'Legendary', text: 'Legendary' },
+                ],
+                race: [
+                    { value: null, text: 'Please select an Race' },
+                    { value: 'Beast', text: 'Beast' },
+                    { value: 'Murloc', text: 'Murloc' },
+                    { value: 'Totem', text: 'Totem' },
+                    { value: 'Mech', text: 'Mech' },
+                    { value: 'Elemental', text: 'Elemental' },
+                    { value: 'Pirate', text: 'Pirate' },
+                    { value: 'Dragon', text: 'Dragon' },
+                    { value: 'All', text: 'All' },
+                    { value: 'Orc', text: 'Orc' },
+                    { value: 'Demon', text: 'Demon' }],
+            },
           }
         },
 
@@ -99,6 +170,19 @@
         },
 
         methods: {
+            searchCard(){
+                let query_string = `?rarity=${this.rarity}&race=${this.race}&cardSet=${this.cardSet}`
+                fetch('api/cards/search' + query_string )
+                    .then(res => res.json())
+                    .then(res => {
+                        this.caris = res;
+                        this.search = '';
+                        this.showSearch = true;
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            },
             fetchCard(id){
                 fetch(`/api/card/${id}`)
                     .then(res => res.json())
@@ -113,6 +197,7 @@
                     .then(res => {
                     this.cards = res.data;
                     vm.makePagination(res.meta, res.links);
+                    this.showSearch = false;
                     }).catch(err => console.log(err))
             },
             makePagination(meta, links) {
@@ -213,4 +298,8 @@ h3 {
     color: goldenrod;
 }
 
+.custom-select {
+  display: inline-block;
+  width: 50%;
+}
 </style>

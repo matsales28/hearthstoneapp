@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\Models\Card;
 use App\Http\Resources\Card as CardResource;
 
@@ -89,5 +88,15 @@ class CardController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(Request $request){
+        $rarity = $request->get('rarity');
+        $card_set = $request->get('cardSet');
+        $race = $request->get('race');
+
+        $query = ['rarity' => $rarity, 'race' => $race, 'cardSet' => $card_set];
+
+        return Card::where($query)->get();
     }
 }

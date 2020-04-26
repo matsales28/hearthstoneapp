@@ -23,3 +23,6 @@ Route::get('cards', 'CardController@index');
 
 // Show single card
 Route::get('card/{id}', 'CardController@show');
+
+
+Route::get('cards/search', 'CardController@search');
