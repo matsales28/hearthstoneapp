@@ -1980,6 +1980,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -47571,7 +47573,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.modal-header{\n    background-color: black;\n    border-bottom: 0 none;\n}\n.modal-footer {\n    background-color: black;\n    border-top: 0 none;\n}\n.modal-body{\n    background-color: black;\n}\np {\nfont-family: \"trebuchet MS\";\ncolor: #222222; \nfont-size: 12pt;\ntext-align: justify;  \nline-height: 20px;  \npadding: 5px;\nmargin-top: 5px;\ncolor: white;\n}\nspan {\n    font-family: \"trebuchet MS\";\n    color: #222222; \n    font-size: 12pt;\n    text-align: justify;  \n    line-height: 20px;  \n    padding: 5px;\n    margin-top: 5px;\n    color: gold;\n}\nh1 {\n    color: rgb(255, 255, 255);\n    margin-bottom: 0px;\n    word-break: keep-all;\n    line-height: 1.5;\n    text-align: left;\n    font-size: 22.781px;\n    margin-top: 1.15228em;\n    line-height: 1.38273em;\n    margin-bottom: .23046em;\n    font-family: Belwe Bold,Georgia,Times,Times New Roman,serif;\n    font-weight: 700;\n    -webkit-font-smoothing: antialiased;\n    margin: .15em 0;\n}\nh2 {\n    text-align: left;\n    font-size: 18px;\n    font-style: italic;\n    word-break: keep-all;\n    overflow-wrap: break-word;\n    margin: 5px 0px;\n    color: gray;\n}\nh3 {\n    font-size: 18px;\n    word-break: keep-all;\n    overflow-wrap: break-word;\n    margin: 5px 0px;\n    text-align: left;\n    color: goldenrod;\n}\n.custom-select {\n  display: inline-block;\n  width: 50%;\n}\n", ""]);
+exports.push([module.i, "\n.modal-header{\n    background-color: black;\n    border-bottom: 0 none;\n}\n.modal-footer {\n    background-color: black;\n    border-top: 0 none;\n}\n.modal-body{\n    background-color: black;\n}\nnav.margined {\n    margin-top: 10px;\n    align-self: center;\n}\np {\nfont-family: \"trebuchet MS\";\ncolor: #222222; \nfont-size: 12pt;\ntext-align: justify;  \nline-height: 20px;  \npadding: 5px;\nmargin-top: 5px;\ncolor: white;\n}\nspan.black {\n    color: black;\n    margin: 0px;\n    display: block;\n}\nspan {\n    font-family: \"trebuchet MS\";\n    color: #222222; \n    font-size: 12pt;\n    text-align: justify;  \n    line-height: 20px;  \n    padding: 5px;\n    margin-top: 5px;\n    color: gold;\n}\nh1 {\n    color: rgb(255, 255, 255);\n    margin-bottom: 0px;\n    word-break: keep-all;\n    line-height: 1.5;\n    text-align: left;\n    font-size: 22.781px;\n    margin-top: 1.15228em;\n    line-height: 1.38273em;\n    margin-bottom: .23046em;\n    font-family: Belwe Bold,Georgia,Times,Times New Roman,serif;\n    font-weight: 700;\n    -webkit-font-smoothing: antialiased;\n    margin: .15em 0;\n}\nh2 {\n    text-align: left;\n    font-size: 18px;\n    font-style: italic;\n    word-break: keep-all;\n    overflow-wrap: break-word;\n    margin: 5px 0px;\n    color: gray;\n}\nh3 {\n    font-size: 18px;\n    word-break: keep-all;\n    overflow-wrap: break-word;\n    margin: 5px 0px;\n    text-align: left;\n    color: goldenrod;\n}\n.custom-select {\n  display: inline-block;\n  width: 50%;\n}\n", ""]);
 
 // exports
 
@@ -79964,8 +79966,12 @@ var render = function() {
   return _c(
     "div",
     [
+      _c("span", { staticClass: "black", attrs: { color: "black" } }, [
+        _vm._v(" Select a card Set ")
+      ]),
+      _vm._v(" "),
       _c("b-form-select", {
-        attrs: { options: _vm.options.cardSet, width: "50px" },
+        attrs: { options: _vm.options.cardSet, label: "Choose a card Set" },
         model: {
           value: _vm.cardSet,
           callback: function($$v) {
@@ -79975,9 +79981,12 @@ var render = function() {
         }
       }),
       _vm._v(" "),
+      _c("span", { staticClass: "black", attrs: { color: "black" } }, [
+        _vm._v(" Select a card Rarity ")
+      ]),
+      _vm._v(" "),
       _c("b-form-select", {
-        staticClass: "mt-3",
-        attrs: { options: _vm.options.rarity, size: "sm" },
+        attrs: { options: _vm.options.rarity },
         model: {
           value: _vm.rarity,
           callback: function($$v) {
@@ -79987,9 +79996,12 @@ var render = function() {
         }
       }),
       _vm._v(" "),
+      _c("span", { staticClass: "black", attrs: { color: "black" } }, [
+        _vm._v(" Select a card Race ")
+      ]),
+      _vm._v(" "),
       _c("b-form-select", {
-        staticClass: "mt-3",
-        attrs: { options: _vm.options.race, size: "sm" },
+        attrs: { options: _vm.options.race },
         model: {
           value: _vm.race,
           callback: function($$v) {
@@ -80010,7 +80022,7 @@ var render = function() {
             }
           }
         },
-        [_c("i", { staticClass: "fa fa-search" })]
+        [_vm._v("Filter"), _c("i", { staticClass: "fa fa-search" })]
       ),
       _vm._v(" "),
       _c(
@@ -80136,67 +80148,6 @@ var render = function() {
         1
       ),
       _vm._v(" "),
-      _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
-        _c("ul", { staticClass: "pagination" }, [
-          _c(
-            "li",
-            {
-              staticClass: "page-item",
-              class: [{ disabled: !_vm.pagination.prev_page_url }]
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "page-link",
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      return _vm.fetchCards(_vm.pagination.prev_page_url)
-                    }
-                  }
-                },
-                [_vm._v("Previous")]
-              )
-            ]
-          ),
-          _vm._v(" "),
-          _c("li", { staticClass: "page-item" }, [
-            _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
-              _vm._v(
-                "Page " +
-                  _vm._s(_vm.pagination.current_page) +
-                  " of " +
-                  _vm._s(_vm.pagination.last_page)
-              )
-            ])
-          ]),
-          _vm._v(" "),
-          _c(
-            "li",
-            {
-              staticClass: "page-item",
-              class: [{ disabled: !_vm.pagination.next_page_url }]
-            },
-            [
-              _c(
-                "a",
-                {
-                  staticClass: "page-link",
-                  attrs: { href: "#" },
-                  on: {
-                    click: function($event) {
-                      return _vm.fetchCards(_vm.pagination.next_page_url)
-                    }
-                  }
-                },
-                [_vm._v("Next")]
-              )
-            ]
-          )
-        ])
-      ]),
-      _vm._v(" "),
       _vm.showSearch === true
         ? _c(
             "div",
@@ -80267,7 +80218,75 @@ var render = function() {
             }),
             0
           )
-        : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "nav",
+        {
+          staticClass: "margined",
+          attrs: { "aria-label": "Page navigation example", "margin-top": "1" }
+        },
+        [
+          _c("ul", { staticClass: "pagination" }, [
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [{ disabled: !_vm.pagination.prev_page_url }]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.fetchCards(_vm.pagination.prev_page_url)
+                      }
+                    }
+                  },
+                  [_vm._v("Previous")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("li", { staticClass: "page-item" }, [
+              _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
+                _vm._v(
+                  "Page " +
+                    _vm._s(_vm.pagination.current_page) +
+                    " of " +
+                    _vm._s(_vm.pagination.last_page)
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "li",
+              {
+                staticClass: "page-item",
+                class: [{ disabled: !_vm.pagination.next_page_url }]
+              },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "page-link",
+                    attrs: { href: "#" },
+                    on: {
+                      click: function($event) {
+                        return _vm.fetchCards(_vm.pagination.next_page_url)
+                      }
+                    }
+                  },
+                  [_vm._v("Next")]
+                )
+              ]
+            )
+          ])
+        ]
+      )
     ],
     1
   )
@@ -92498,9 +92517,7 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('navbar', __webpack_require__(/*! ./components/Navbar.vue */ "./resources/js/components/Navbar.vue")["default"]);
-Vue.component('teste-componente', __webpack_require__(/*! ./components/TesteComponente.vue */ "./resources/js/components/TesteComponente.vue")["default"]);
 Vue.component('cards-component', __webpack_require__(/*! ./components/CardsComponent.vue */ "./resources/js/components/CardsComponent.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -92655,17 +92672,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/home/matheus/hearthstone-app/resources/js/components/ExampleComponent.vue'");
-
-/***/ }),
-
 /***/ "./resources/js/components/Navbar.vue":
 /*!********************************************!*\
   !*** ./resources/js/components/Navbar.vue ***!
@@ -92716,17 +92722,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_Navbar_vue_vue_type_template_id_6dde423b___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
-
-/***/ }),
-
-/***/ "./resources/js/components/TesteComponente.vue":
-/*!*****************************************************!*\
-  !*** ./resources/js/components/TesteComponente.vue ***!
-  \*****************************************************/
-/*! exports provided: default */
-/***/ (function(module, exports) {
-
-throw new Error("Module build failed (from ./node_modules/vue-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/home/matheus/hearthstone-app/resources/js/components/TesteComponente.vue'");
 
 /***/ }),
 

@@ -1,9 +1,12 @@
 <template>
-    <div>
-            <b-form-select v-model="cardSet" :options="options.cardSet" width="50px"></b-form-select>
-            <b-form-select v-model="rarity" :options="options.rarity" size="sm" class="mt-3"></b-form-select>
-            <b-form-select v-model="race" :options="options.race" size="sm" class="mt-3"></b-form-select>
-            <button @click.prevent="searchCard()" class="btn btn-primary"><i class="fa fa-search"></i></button>
+    <div>   
+            <span class="black" color="black"> Select a card Set </span>
+            <b-form-select v-model="cardSet" :options="options.cardSet" label="Choose a card Set"></b-form-select>
+            <span class="black" color="black"> Select a card Rarity </span>
+            <b-form-select v-model="rarity" :options="options.rarity"></b-form-select>
+            <span class="black" color="black"> Select a card Race </span>
+            <b-form-select v-model="race" :options="options.race"></b-form-select>
+            <button @click.prevent="searchCard()" class="btn btn-primary">Filter<i class="fa fa-search"></i></button>
         <b-modal  id="modal-lg" size="lg" centered v-model="modalShow" :busy=true :hide-footer=true :hide-header=true>
             <b-container>
                 <b-row class="mb-1 text-center">
@@ -45,14 +48,6 @@
                 </b-row>
             </b-container>
         </b-modal>
-
-        <nav aria-label="Page navigation example">
-            <ul class="pagination">
-                <li v-bind:class="[{disabled: !pagination.prev_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchCards(pagination.prev_page_url)">Previous</a></li>
-                <li class="page-item"><a class="page-link" href="#">Page {{pagination.current_page}} of {{pagination.last_page}}</a></li>
-                <li v-bind:class="[{disabled: !pagination.next_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchCards(pagination.next_page_url)">Next</a></li>
-            </ul>
-        </nav>
         <div v-if="showSearch===true">
             <div class="card-deck"  v-for="n in 3" v-bind:key="n">
                 <div class="card border-light mb-3" v-for="(cari,index) in caris" v-if="index <= ((n*10)-1) && index >= ((n*10)-10)" @click="fetchCard(cari.id)" v-bind:key="cari.id">
@@ -67,6 +62,13 @@
                 </div>
             </div>
         </div>
+        <nav class="margined" aria-label="Page navigation example" margin-top="1">
+            <ul class="pagination">
+                <li v-bind:class="[{disabled: !pagination.prev_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchCards(pagination.prev_page_url)">Previous</a></li>
+                <li class="page-item"><a class="page-link" href="#">Page {{pagination.current_page}} of {{pagination.last_page}}</a></li>
+                <li v-bind:class="[{disabled: !pagination.next_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchCards(pagination.next_page_url)">Next</a></li>
+            </ul>
+        </nav>
     </div>
 </template>
 
@@ -241,6 +243,11 @@
     background-color: black;
 }
 
+nav.margined {
+    margin-top: 10px;
+    align-self: center;
+}
+
 p {
 font-family: "trebuchet MS";
 color: #222222; 
@@ -250,6 +257,12 @@ line-height: 20px;
 padding: 5px;
 margin-top: 5px;
 color: white;
+}
+
+span.black {
+    color: black;
+    margin: 0px;
+    display: block;
 }
 
 span {
