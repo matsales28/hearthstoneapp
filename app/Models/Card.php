@@ -19,7 +19,8 @@ class Card extends Model
         'text',
         'mechanics',
         'flavor',
-        'cost'
+        'cost',
+        'rarity'
     ];
 
     protected $casts = [

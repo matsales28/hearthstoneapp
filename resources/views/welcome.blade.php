@@ -17,8 +17,6 @@
             <div id="app">
                 <navbar></navbar>
                 <cards-component></cards-component>
-                <teste-componente></teste-componente>
-                <example-component></example-component>
             </div>
         </div>
         <script src="js/app.js"></script>

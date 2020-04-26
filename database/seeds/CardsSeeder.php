@@ -57,7 +57,7 @@ class CardsSeeder extends Seeder
         $card_attrs['mechanics'] = array_key_exists('mechanics', $response) ? $response['mechanics'] : null;
         $card_attrs['flavor'] = array_key_exists('flavor', $response) ? $response['flavor'] : null;
         $card_attrs['cost'] = array_key_exists('cost', $response) ? $response['cost'] : null;
-
+        $card_attrs['rarity'] = array_key_exists('rarity', $response) ? $response['rarity'] : null;
 
         return $card_attrs;
     }

@@ -1,18 +1,47 @@
 <template>
     <div>
-        <b-modal v-model="modalShow">
-            <div class>
-                <img :src="card.img" :alt="card.name">
-            </div>
-            <div class>
-                <span class>{{card.name}}</span>
-                <h2>{{card.text | prettyText()}}</h2>
-                <p>{{card.descricao}}</p>
-                <div v-for="mechanic in card.mechanics" v-bind:key="mechanic.name">
-                    <p>{{mechanic.name}}</p>
-                </div>
-            </div>
+        <b-modal  id="modal-lg" size="lg" centered v-model="modalShow" busy="true" hide-footer="true" hide-header="true">
+            <b-container>
+                <b-row class="mb-1 text-center">
+                    <b-col cols="6">
+                        <b-img :src="card.img" alt="Left image"></b-img>
+                    </b-col>
+                    <b-col align-self="center">
+                        <h1>{{card.name}}</h1>
+                        <h2>{{card.flavor}}</h2>
+                        <h3>{{card.text | prettyText}}</h3>
+                        <ul>
+                            <li v-if="card.type">
+                                <p class="text-left">Type:
+                                 <span> {{card.type}} </span>
+                                </p>
+                            </li>
+                            <li v-if="card.rarity">
+                                <p class="text-left">Rarity:
+                                 <span> {{card.rarity}} </span>
+                                </p>
+                            </li>
+                            <li v-if="card.cardSet">
+                                <p class="text-left">Set:
+                                 <span> {{card.cardSet}} </span>
+                                </p>
+                            </li>
+                             <li v-if="card.playerClass">
+                                <p class="text-left">Class:
+                                 <span> {{card.playerClass}} </span>
+                                </p>
+                            </li>
+                             <li v-if="card.mechanics">
+                                <p class="text-left">Mechanics:
+                                 <span v-for="mechanic in card.mechanics" v-bind:key="mechanic.name"> {{mechanic.name}} </span>
+                                </p>
+                            </li>
+                        </ul>
+                    </b-col>
+                </b-row>
+            </b-container>
         </b-modal>
+
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li v-bind:class="[{disabled: !pagination.prev_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchCards(pagination.prev_page_url)">Previous</a></li>
@@ -20,24 +49,10 @@
                 <li v-bind:class="[{disabled: !pagination.next_page_url}]" class="page-item"><a class="page-link" href="#" @click="fetchCards(pagination.next_page_url)">Next</a></li>
             </ul>
         </nav>
-        
-        <div class="card" style="width: 18rem;" v-for="card in cards" v-bind:key="card.id">
-            <div>
-                <b-card
-                    @click="fetchCard(card.id)"
-                    :title="card.name"
-                    :img-src="card.img"
-                    :sub-title="card.type"
-                    img-alt=""
-                    img-top
-                    tag="article"
-                    style="max-width: 20rem;"
-                    class="mb-2"
-                >
-                    <b-card-text>
-                        {{card.text | prettyText()}}
-                    </b-card-text>
-                </b-card>
+
+        <div class="card-deck"  v-for="n in 3" v-bind:key="n">
+            <div class="card border-light mb-3" v-for="(card,index) in cards" v-if="index <= ((n*10)-1) && index >= ((n*10)-10)" @click="fetchCard(card.id)" v-bind:key="card.id">
+                <img class="card-img-top" :src="card.img" alt="Card image cap">
             </div>
         </div>
     </div>
@@ -60,7 +75,10 @@
               type: '',
               text: '',
               img: '',
-              mechanic: ''
+              mechanic: '',
+              rarity: '',
+              flavor: '',
+              cost: ''
             },
             card_id: '',
             pagination: {},
@@ -109,6 +127,90 @@
         },
         mounted() {
             console.log('Component mounted.')
+        },
+        computed: {
+            firstColumn(){
+                return this.cards.slice(0,9)
+            },
+            secondColumn(){
+                return this.cards.slice(10, 19)
+            },
+            thirdColumn(){
+                return this.cards.slice(20,29)
+            },
         }
     }
 </script>
+
+<style>
+.modal-header{
+    background-color: black;
+    border-bottom: 0 none;
+}
+
+.modal-footer {
+    background-color: black;
+    border-top: 0 none;
+}
+.modal-body{
+    background-color: black;
+}
+
+p {
+font-family: "trebuchet MS";
+color: #222222; 
+font-size: 12pt;
+text-align: justify;  
+line-height: 20px;  
+padding: 5px;
+margin-top: 5px;
+color: white;
+}
+
+span {
+    font-family: "trebuchet MS";
+    color: #222222; 
+    font-size: 12pt;
+    text-align: justify;  
+    line-height: 20px;  
+    padding: 5px;
+    margin-top: 5px;
+    color: gold;
+}
+
+h1 {
+    color: rgb(255, 255, 255);
+    margin-bottom: 0px;
+    word-break: keep-all;
+    line-height: 1.5;
+    text-align: left;
+    font-size: 22.781px;
+    margin-top: 1.15228em;
+    line-height: 1.38273em;
+    margin-bottom: .23046em;
+    font-family: Belwe Bold,Georgia,Times,Times New Roman,serif;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    margin: .15em 0;
+}
+
+h2 {
+    text-align: left;
+    font-size: 18px;
+    font-style: italic;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    margin: 5px 0px;
+    color: gray;
+}
+
+h3 {
+    font-size: 18px;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+    margin: 5px 0px;
+    text-align: left;
+    color: goldenrod;
+}
+
+</style>

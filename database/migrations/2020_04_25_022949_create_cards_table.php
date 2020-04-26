@@ -28,6 +28,7 @@ class CreateCardsTable extends Migration
             $table->json('mechanics')->nullable();
             $table->integer('cost')->nullable();
             $table->string('flavor')->nullable();
+            $table->string('rarity')->nullable();
             
             $table->timestamps();
         });
