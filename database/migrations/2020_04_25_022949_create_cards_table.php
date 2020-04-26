@@ -17,6 +17,8 @@ class CreateCardsTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('health')->nullable();
+            $table->string('playerClass')->nullable();
+            $table->string('cardSet')->nullable();
             $table->integer('attack')->nullable();
             $table->string('type')->nullable();
             $table->string('race')->nullable();
@@ -24,6 +26,8 @@ class CreateCardsTable extends Migration
             $table->string('text')->nullable();
             $table->string('img')->nullable();
             $table->json('mechanics')->nullable();
+            $table->integer('cost')->nullable();
+            $table->string('flavor')->nullable();
             
             $table->timestamps();
         });

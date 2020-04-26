@@ -48,10 +48,16 @@ class CardsSeeder extends Seeder
         $card_attrs['health'] = array_key_exists('health', $response) ? $response['health'] : null;
         $card_attrs['attack'] = array_key_exists('attack', $response) ? $response['attack'] : null;
         $card_attrs['faction'] = array_key_exists('faction', $response) ? $response['faction'] : null;
+        $card_attrs['playerClass'] = array_key_exists('playerClass', $response) ? $response['playerClass'] : null;
+        $card_attrs['img'] = array_key_exists('img', $response) ? $response['img'] : null;
+        $card_attrs['cardSet'] = array_key_exists('cardSet', $response) ? $response['cardSet'] : null;
         $card_attrs['race'] = array_key_exists('race', $response) ? $response['race'] : null;
         $card_attrs['type'] = array_key_exists('type', $response) ? $response['type'] : null;
         $card_attrs['text'] = array_key_exists('text', $response) ? $response['text'] : null;
         $card_attrs['mechanics'] = array_key_exists('mechanics', $response) ? $response['mechanics'] : null;
+        $card_attrs['flavor'] = array_key_exists('flavor', $response) ? $response['flavor'] : null;
+        $card_attrs['cost'] = array_key_exists('cost', $response) ? $response['cost'] : null;
+
 
         return $card_attrs;
     }

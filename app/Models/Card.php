@@ -11,11 +11,15 @@ class Card extends Model
         'health',
         'attack',
         'faction',
+        'playerClass',
+        'img',
+        'cardSet',
         'race',
         'type',
         'text',
-        'img',
-        'mechanics'
+        'mechanics',
+        'flavor',
+        'cost'
     ];
 
     protected $casts = [
