@@ -11,7 +11,7 @@
             <b-container>
                 <b-row class="mb-1 text-center">
                     <b-col cols="6">
-                        <b-img :src="card.img" alt="Left image"></b-img>
+                        <b-img :src="card.img | formatImage" alt="Left image"></b-img>
                     </b-col>
                     <b-col align-self="center">
                         <h1>{{card.name}}</h1>
@@ -51,14 +51,14 @@
         <div v-if="showSearch===true">
             <div class="card-deck"  v-for="n in 3" v-bind:key="n">
                 <div class="card border-light mb-3" v-for="(cari,index) in caris" v-if="index <= ((n*10)-1) && index >= ((n*10)-10)" @click="fetchCard(cari.id)" v-bind:key="cari.id">
-                    <img class="card-img-top" :src="cari.img" alt="Card image cap">
+                    <img class="card-img-top" :src="cari.img | formatImage" alt="Card image cap">
                 </div>
             </div>
         </div>
         <div v-if="showSearch===false">
             <div class="card-deck"  v-for="n in 3" v-bind:key="n">
                 <div class="card border-light mb-3" v-for="(card,index) in cards" v-if="index <= ((n*10)-1) && index >= ((n*10)-10)" @click="fetchCard(card.id)" v-bind:key="card.id">
-                    <img class="card-img-top" :src="card.img" alt="Card image cap">
+                    <img class="card-img-top" :src="card.img | formatImage" alt="Card image cap">
                 </div>
             </div>
         </div>
@@ -168,6 +168,14 @@
                 if (text != null){
                     return text = text.replace(/<[^>]+>/g, '');
                 }   
+            },
+            formatImage(img){
+                if (img != null){
+                    return img
+                }
+                else {
+                    return "https://i.ibb.co/g9Z23D9/Screenshot-from-2020-04-26-21-21-06-removebg-preview-1.png"
+                }
             }
         },
 

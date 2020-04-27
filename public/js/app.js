@@ -2171,6 +2171,13 @@ __webpack_require__.r(__webpack_exports__);
       if (text != null) {
         return text = text.replace(/<[^>]+>/g, '');
       }
+    },
+    formatImage: function formatImage(img) {
+      if (img != null) {
+        return img;
+      } else {
+        return "https://i.ibb.co/g9Z23D9/Screenshot-from-2020-04-26-21-21-06-removebg-preview-1.png";
+      }
     }
   },
   methods: {
@@ -80057,7 +80064,10 @@ var render = function() {
                     { attrs: { cols: "6" } },
                     [
                       _c("b-img", {
-                        attrs: { src: _vm.card.img, alt: "Left image" }
+                        attrs: {
+                          src: _vm._f("formatImage")(_vm.card.img),
+                          alt: "Left image"
+                        }
                       })
                     ],
                     1
@@ -80171,7 +80181,10 @@ var render = function() {
                         [
                           _c("img", {
                             staticClass: "card-img-top",
-                            attrs: { src: cari.img, alt: "Card image cap" }
+                            attrs: {
+                              src: _vm._f("formatImage")(cari.img),
+                              alt: "Card image cap"
+                            }
                           })
                         ]
                       )
@@ -80207,7 +80220,10 @@ var render = function() {
                         [
                           _c("img", {
                             staticClass: "card-img-top",
-                            attrs: { src: card.img, alt: "Card image cap" }
+                            attrs: {
+                              src: _vm._f("formatImage")(card.img),
+                              alt: "Card image cap"
+                            }
                           })
                         ]
                       )
